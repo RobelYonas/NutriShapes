@@ -1,7 +1,6 @@
-// app.js
-
 const express = require('express');
-const connectDB = require('./config/database'); // Adjust the path based on the location inside config folder
+const connectDB = require('./config/database');
+const authRoutes = require('./routes/authRoutes');
 
 // Connect to MongoDB
 connectDB();
@@ -9,4 +8,11 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Middleware
+app.use(express.json()); // Parse JSON request bodies
+
+// Routes
+app.use('/api/auth', authRoutes);
+
+// Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
