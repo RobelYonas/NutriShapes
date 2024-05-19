@@ -13,7 +13,6 @@ function Home() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Profile />
       <Veggie />
       <Popular />
     </motion.div>

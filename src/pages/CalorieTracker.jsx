@@ -5,17 +5,14 @@ import styled from 'styled-components';
 import { useCalories } from '../components/CalorieContext'; // Import the useCalories hook
 
 const CalorieTracker = () => {
-    const { totalCalories, totalProtein, totalFat } = useCalories(); // Get the total values from context
-    const calorieGoal = 2000; // Example calorie goal
-    const proteinGoal = 100; // Example protein goal
-    const fatGoal = 70; // Example fat goal
+    const { totalCalories, totalProtein, totalFat, calorieGoal, proteinTarget, fatTarget } = useCalories(); // Get the total values and targets from context
 
     const [currentNutrient, setCurrentNutrient] = useState('calories');
 
     const nutrients = {
         calories: { total: totalCalories, goal: calorieGoal, label: 'kcal' },
-        protein: { total: totalProtein, goal: proteinGoal, label: 'g' },
-        fat: { total: totalFat, goal: fatGoal, label: 'g' },
+        protein: { total: totalProtein, goal: proteinTarget, label: 'g' },
+        fat: { total: totalFat, goal: fatTarget, label: 'g' },
     };
 
     const nutrient = nutrients[currentNutrient];
@@ -45,7 +42,7 @@ const CalorieTracker = () => {
             </ButtonContainer>
             <ProgressWrapper>
                 <GoalContainer>
-                    <p>Goal: {nutrient.goal} {nutrient.label}</p>
+                    <p>Goal: {nutrient.goal.toFixed(2)} {nutrient.label}</p>
                 </GoalContainer>
                 <ProgressContainer>
                     <CircularProgressbar
@@ -61,7 +58,7 @@ const CalorieTracker = () => {
                     />
                 </ProgressContainer>
                 <RemainingContainer>
-                    <p>Left: {remaining} {nutrient.label}</p>
+                    <p>Left: {remaining.toFixed(2)} {nutrient.label}</p>
                 </RemainingContainer>
             </ProgressWrapper>
         </Container>

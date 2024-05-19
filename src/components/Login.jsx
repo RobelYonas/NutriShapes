@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import '../style/Login.css';
 import '../App.scss';
 import video from '../assets/video.mp4';
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 
-const Login = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-
+const Login = ({ onLogin }) => {
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
@@ -33,6 +27,7 @@ const Login = () => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             setMessage('Login successful');
+            onLogin(); // Notify parent component about login
             navigate('/home'); // Redirect to home page
         } catch (error) {
             console.error('Error logging in user:', error.response?.data || error.message);
