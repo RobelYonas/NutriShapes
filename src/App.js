@@ -70,7 +70,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute>
-                <Profile />
+                <Profile onLogout={handleLogout} />
               </ProtectedRoute>
             }
           />

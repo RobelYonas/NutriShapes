@@ -1,20 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Logout = ({ onLogout }) => {
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        onLogout();
-        navigate('/login');
-    };
-
-    return (
-        <StyledButton onClick={handleLogout}>Logout</StyledButton>
-    );
+  return (
+    <StyledButton onClick={onLogout}>Logout</StyledButton>
+  );
 };
 
 const StyledButton = styled.button`

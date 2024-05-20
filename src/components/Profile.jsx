@@ -1,57 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useCalories } from '../components/CalorieContext';
 
-const Profile = () => {
-    const [user, setUser] = useState(null);
-    const { proteinTarget, fatTarget } = useCalories();
+const Profile = ({ onLogout }) => {
+  const [user, setUser] = useState(null);
+  const { proteinTarget, fatTarget } = useCalories();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('user'));
-        if (userData) {
-            setUser(userData);
-        }
-    }, []);
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (userData) {
+      setUser(userData);
+    }
+  }, []);
 
-    return (
-        <ProfileContainer>
-            <Card>
-                <Circle className="circle1"></Circle>
-                <Circle className="circle2"></Circle>
-                <CardInner>
-                    <ProfileHeader>
-                        <h2>Profile</h2>
-                    </ProfileHeader>
-                    <ProfileInfo>
-                        <InfoRow>
-                            <InfoLabel>Username:</InfoLabel>
-                            <InfoValue>{user?.username}</InfoValue>
-                        </InfoRow>
-                        <InfoRow>
-                            <InfoLabel>Email:</InfoLabel>
-                            <InfoValue>{user?.email}</InfoValue>
-                        </InfoRow>
-                        <InfoRow>
-                            <InfoLabel>Weight:</InfoLabel>
-                            <InfoValue>{user?.weight} kg</InfoValue>
-                        </InfoRow>
-                        <InfoRow>
-                            <InfoLabel>Dietary Goal:</InfoLabel>
-                            <InfoValue>{user?.dietaryGoal}</InfoValue>
-                        </InfoRow>
-                        <InfoRow>
-                            <InfoLabel>Protein Target:</InfoLabel>
-                            <InfoValue>{proteinTarget.toFixed(2)} g</InfoValue>
-                        </InfoRow>
-                        <InfoRow>
-                            <InfoLabel>Fat Target:</InfoLabel>
-                            <InfoValue>{fatTarget.toFixed(2)} g</InfoValue>
-                        </InfoRow>
-                    </ProfileInfo>
-                </CardInner>
-            </Card>
-        </ProfileContainer>
-    );
+  const handleDeleteAccount = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/delete`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      onLogout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error deleting account:', error.response?.data || error.message);
+    }
+  };
+
+  return (
+    <ProfileContainer>
+      <Card>
+        <Circle className="circle1"></Circle>
+        <Circle className="circle2"></Circle>
+        <CardInner>
+          <ProfileHeader>
+            <h2>Profile</h2>
+          </ProfileHeader>
+          <ProfileInfo>
+            <InfoRow>
+              <InfoLabel>Username:</InfoLabel>
+              <InfoValue>{user?.username}</InfoValue>
+            </InfoRow>
+            <InfoRow>
+              <InfoLabel>Email:</InfoLabel>
+              <InfoValue>{user?.email}</InfoValue>
+            </InfoRow>
+            <InfoRow>
+              <InfoLabel>Weight:</InfoLabel>
+              <InfoValue>{user?.weight} kg</InfoValue>
+            </InfoRow>
+            <InfoRow>
+              <InfoLabel>Dietary Goal:</InfoLabel>
+              <InfoValue>{user?.dietaryGoal}</InfoValue>
+            </InfoRow>
+            <InfoRow>
+              <InfoLabel>Protein Target:</InfoLabel>
+              <InfoValue>{proteinTarget.toFixed(2)} g</InfoValue>
+            </InfoRow>
+            <InfoRow>
+              <InfoLabel>Fat Target:</InfoLabel>
+              <InfoValue>{fatTarget.toFixed(2)} g</InfoValue>
+            </InfoRow>
+          </ProfileInfo>
+          <DeleteButton onClick={handleDeleteAccount}>Delete Account</DeleteButton>
+        </CardInner>
+      </Card>
+    </ProfileContainer>
+  );
 };
 
 const ProfileContainer = styled.div`
@@ -63,8 +82,8 @@ const ProfileContainer = styled.div`
 `;
 
 const Card = styled.div`
-  width: 300px; /* Adjusted width to fit more content */
-  height: 400px; /* Adjusted height to fit more content */
+  width: 300px;
+  height: 400px;
   transition: all 0.2s;
   position: relative;
   cursor: pointer;
@@ -109,11 +128,11 @@ const Circle = styled.div`
 const CardInner = styled.div`
   width: inherit;
   height: inherit;
-  background: rgba(255, 255, 255, 0.85); /* Increased opacity for better contrast */
+  background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 8px;
-  padding: 20px; /* Added padding for better content layout */
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,6 +171,20 @@ const InfoLabel = styled.div`
 
 const InfoValue = styled.div`
   color: #333;
+`;
+
+const DeleteButton = styled.button`
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ff1a1a;
+  }
 `;
 
 export default Profile;

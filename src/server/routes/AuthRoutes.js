@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
-const authMiddleware = require('../middleware/authMiddleware'); // Updated name
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Registration route
 router.post('/register', authController.registerUser);
