@@ -19,10 +19,13 @@ header {
     margin-left: auto;  /* Push the menu to the far right */
     padding: 0;  /* Remove any default padding */
     color: white;
+    font-size: 1.5rem;
+
 }
 
 .header-menu > li {
     cursor: pointer;
+
 }
 
 .header-menu > li:hover {

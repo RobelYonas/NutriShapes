@@ -1,11 +1,12 @@
 import React from "react";
-import './Hero.css'
+import './Hero.css';
 import { Header } from "../Header/Header";
 import hero_image from "../../assets/hero_image.png";
 import rice from "../../assets/rice.png";
 import shrimp from "../../assets/shrimp.png";
 import Calories from "../../assets/calories.png";
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion';
+import { Link } from "react-router-dom";
 
 const Hero = () => {
 
@@ -35,7 +36,7 @@ const Hero = () => {
                         <span>Dream Physique</span>
                     </div>
                     <div>
-                        <span>
+                        <span id= 'span'>
                             Achieve your dream physique with NutriShape
                         </span>
                     </div>
@@ -57,11 +58,11 @@ const Hero = () => {
                         <span>Fitness program</span>
                     </div>
                 </div>
-
-
             </div>
             <div className="right-h">
-                <button className="btn">Join Now</button>
+                <Link to="/login">
+                    <button className="L-btn">Join Now</button>
+                </Link>
 
                 <div className="heart-rate">
                     <img src={rice} alt="" />

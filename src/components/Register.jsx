@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import '../App.scss';
+import styles from '../style/Register.module.scss';
 import video from '../assets/video.mp4';
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
@@ -37,7 +37,7 @@ const Register = () => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             setMessage('Registration successful');
-            navigate('/home'); // Redirect to home page
+            navigate('/home');
         } catch (error) {
             console.error('Error registering user:', error.response?.data || error.message);
             setError(error.response?.data?.message || 'An error occurred. Please try again.');
@@ -45,66 +45,66 @@ const Register = () => {
     };
 
     return (
-        <div className='registerPage flex'>
-            <div className="container flex">
-                <div className="videoDiv">
+        <div className={styles.registerPage + ' ' + styles.flex}>
+            <div className={styles.container + ' ' + styles.flex}>
+                <div className={styles.videoDiv}>
                     <video src={video} autoPlay muted loop></video>
-                    <div className="textDiv">
-                        <h2 className="title">Meal Prep Properly</h2>
+                    <div className={styles.textDiv}>
+                        <h2 className={styles.title}>Meal Prep Properly</h2>
                         <p>Healthy You is the Best You</p>
                     </div>
-                    <div className="footerDiv flex">
-                        <span className="text">Have an account?</span>
+                    <div className={styles.footerDiv + ' ' + styles.flex}>
+                        <span className={styles.text}>Have an account?</span>
                         <Link to={'/login'}>
-                            <button className="btn">Login</button>
+                            <button className={styles.btn}>Login</button>
                         </Link>
                     </div>
                 </div>
-                <div className="formDiv flex">
-                    <div className="headerDiv">
+                <div className={styles.formDiv + ' ' + styles.flex}>
+                    <div className={styles.headerDiv}>
                         <h3>Let Us Know You!</h3>
                     </div>
-                    <form onSubmit={handleSubmit} className='form grid'>
-                        {error && <p className="showMessage">{error}</p>}
-                        {message && <p className="showMessage">{message}</p>}
-                        <div className="inputDiv">
+                    <form onSubmit={handleSubmit} className={styles.form + ' ' + styles.grid}>
+                        {error && <p className={styles.showMessage}>{error}</p>}
+                        {message && <p className={styles.showMessage}>{message}</p>}
+                        <div className={styles.inputDiv}>
                             <label htmlFor='username'>Username</label>
-                            <div className="input flex">
-                                <FaUserShield className='icon' />
+                            <div className={styles.input + ' ' + styles.flex}>
+                                <FaUserShield className={styles.icon} />
                                 <input type='text' id='username' name='username' placeholder='Username' value={formData.username} onChange={handleChange} />
                             </div>
                         </div>
-                        <div className="inputDiv">
+                        <div className={styles.inputDiv}>
                             <label htmlFor='weight'>Current Weight</label>
-                            <div className="input flex">
-                                <FaWeightScale className='icon' />
+                            <div className={styles.input + ' ' + styles.flex}>
+                                <FaWeightScale className={styles.icon} />
                                 <input type='text' id='weight' name='weight' placeholder='Current Weight (kg)' value={formData.weight} onChange={handleChange} />
                             </div>
                         </div>
-                        <div className="inputDiv">
+                        <div className={styles.inputDiv}>
                             <label htmlFor='dietaryGoal'>Dietary Goal</label>
-                            <div className="input flex">
-                                <FaWeightScale className='icon' />
+                            <div className={styles.input + ' ' + styles.flex}>
+                                <FaWeightScale className={styles.icon} />
                                 <input type='text' id='dietaryGoal' name='dietaryGoal' placeholder='Dietary Goal (bulk, cut, maintain)' value={formData.dietaryGoal} onChange={handleChange} />
                             </div>
                         </div>
-                        <div className="inputDiv">
+                        <div className={styles.inputDiv}>
                             <label htmlFor='email'>Email</label>
-                            <div className="input flex">
-                                <MdMarkEmailRead className='icon' />
+                            <div className={styles.input + ' ' + styles.flex}>
+                                <MdMarkEmailRead className={styles.icon} />
                                 <input type='email' id='email' name='email' placeholder='Email' value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
-                        <div className="inputDiv">
+                        <div className={styles.inputDiv}>
                             <label htmlFor='password'>Password</label>
-                            <div className="input flex">
-                                <BsFillShieldLockFill className='icon' />
+                            <div className={styles.input + ' ' + styles.flex}>
+                                <BsFillShieldLockFill className={styles.icon} />
                                 <input type='password' id='password' name='password' placeholder='Password' value={formData.password} onChange={handleChange} />
                             </div>
                         </div>
-                        <button type='submit' className='btn flex'>
+                        <button type='submit' className={styles.btn + ' ' + styles.flex}>
                             <span>Register</span>
-                            <AiOutlineSwapRight className='icon' />
+                            <AiOutlineSwapRight className={styles.icon} />
                         </button>
                     </form>
                 </div>
