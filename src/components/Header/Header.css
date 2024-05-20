@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    align-items: center;  /* Ensure items are aligned vertically in the center */
+    justify-content: space-between;  /* Distribute space between items */
+    padding: 0 2rem;  /* Add padding to the sides if needed */
+    width: 100%;  /* Ensure the header takes full width */
+    box-sizing: border-box;  /* Include padding in the width calculation */
+}
+
+.logo {
+    width: 10rem;
+    height: 3rem;
+}
+
+.header-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;  /* Push the menu to the far right */
+    padding: 0;  /* Remove any default padding */
+    color: white;
+}
+
+.header-menu > li {
+    cursor: pointer;
+}
+
+.header-menu > li:hover {
+    color: var(--orange);
+}
