@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 
-*{
-    padding: 0%;
+* {
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Reddit Sans", sans-serif;
 }
 
-:root{
+:root {
     --primaryColor: hsl(94, 55%, 56%);
     --hoverColor: hsl(93, 75%, 76%);
     --paleGreen: hsl(96, 75%, 89%);
     --whiteColor: hsl(0, 0%, 100%);
-    --blackColor: ☐ hsl(0, 0%, 18%);
+    --blackColor: hsl(0, 0%, 18%);
     --greyText: hsl(0, 0%, 75%);
     --bgColor: hsl(113, 11%, 85%);
     --inputColor: hsl(330, 12%, 97%);
-    /* Font ang Typography */
+    /* Font and Typography */
     --biggestFontSize: 2.5rem;
     --h1FontSize: 1.5rem;
     --h2FontSize: 1.25rem;
@@ -26,267 +26,259 @@
     --smallestFontSize: .75rem; 
 }
 
-.flex{
+.flex {
     display: flex;
     align-items: center;
-
 }
 
-.grid{
+.grid {
     display: grid;
     align-items: center;
     gap: 1.5rem;
 }
 
-html{
+html {
     font-size: 90%;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-li{
+li {
     list-style: none;
 }
 
-.icon{
+.icon {
     font-size: var(--h2FontSize);
     cursor: pointer;
 }
 
-img, video{
+img, video {
     height: 100px;
     width: 100%;
 }
 
-
-.message{
+.message {
     display: none;
 }
 
-.showMessage{
+.showMessage {
     display: block;
     color: var(--whiteColor);
-    background: rgb(255,0,0);
-    border-radius: 3px;
-    text-align: center;
-}
-
-.showMessage{
-    display: block;
-    color: var(--whiteColor);
-    padding: 10px;
     background: rgb(255, 0, 0);
     border-radius: 3px;
     text-align: center;
 }
 
-.btn{
+.btn {
     border: none;
     outline: none;
     cursor: pointer;
     border-radius: 0%;
-    padding: .7rem 1 rem;
+    padding: .7rem 1rem;
     color: var(--greyText);
 }
 
-.btn .icon{
+.btn .icon {
     margin-left: .7rem;
 }
 
-.btn:hover{
+.btn:hover {
     color: var(--primaryColor);
     background: var(--paleGreen);
 }
 
-.loginPage, .registerPage{
+.loginPage, .registerPage {
     background-color: rgba(0, 39, 39, 1);
     height: 100vh;
     width: 100%;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 7px 50px rgb(214,223,213);
+    box-shadow: 0 7px 50px rgb(214, 223, 213);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .container{
-        height: 85vh;
-        width: 80%;
-        margin: auto;
+    .container {
+        height: 90%; /* Adjusted height */
+        width: 90%; /* Adjusted width */
+        display: flex;
         justify-content: space-between;
         border-radius: 10px;
         background: rgba(0, 128, 128, 1.0);
+    }
 
-        .videoDiv{
-            position: relative;
-            display: flex;
-            flex-basis: 50%;
-            width: 70%;
+    .videoDiv {
+        position: relative;
+        display: flex;
+        flex-basis: 45%;
+        height: 100%;
+        padding: 1.5rem;
+        text-align: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        border-radius: 10px;
+        overflow: hidden;
+
+        video, .footerDiv {
+            position: absolute;
+        }
+
+        video {
             height: 100%;
-            padding: 1.5rem;
-            text-align: center;
-            Justify-content: center;
-            flex-direction: column;
-            margin: auto;
-            border-radius: 10px;
-            overflow: hidden;
+            width: 100%;
+            object-fit: cover;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
 
-            video, .footerDiv{
-                position: absolute;
-            }
-            video{
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 0;
-            }
+        .textDiv {
+            position: relative;
 
-            .textDiv{
-                position: relative;
-
-                .title{
-                    color: var(--whiteColor);
-                    font-size: 35px;
-                    font-weight: 800px;
-                }
-
-                p{
-                    color: var(--whiteColor);
-                    padding: 1rem;
-                    font-weight: 400;
-                }
-            }
-
-            .footerDiv{
-                bottom: 10px;
-                padding: 0 1rem;
-                height: 60px;
-                background: rgba(255, 255, 255, 0.248);
-                left: 10px;
-                right: 10px;
-                justify-content: space-between;
-                backdrop-filter: blur(1px);
-                border-radius: 10px;
-            }
-             .text{
+            .title {
                 color: var(--whiteColor);
+                font-size: 35px;
+                font-weight: 800px;
             }
 
-            .btn{
-                background: var(--whiteColor);
-                color: var(--primaryColor);
-                padding: .8rem 1.5rem;
-                border-radius: 10px;
+            p {
+                color: var(--whiteColor);
+                padding: 1rem;
                 font-weight: 400;
-                transition: 0.3s ease;
-
-                &:hover{
-                    background: var(--hoverColor);
-                    color: var(--blackColor);
-                }
             }
         }
 
-        .formDiv{
-            flex-basis: 50%;
-            margin: auto;
-            flex-direction: column;
-            gap: 1.5rem;
-            transform: translateY(-1rem);
+        .footerDiv {
+            bottom: 10px;
+            padding: 0 1rem;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.248);
+            left: 10px;
+            right: 10px;
+            justify-content: space-between;
+            backdrop-filter: blur(1px);
+            border-radius: 10px;
+        }
 
-            .headerDiv{
-                color: rgba(250, 249,246, 1);
-                text-align: center;
-                padding: 1.5rem 0;
+        .text {
+            color: var(--whiteColor);
+        }
 
-                img{
-                    width: 60px;
-                    padding-bottom: .5rem;
+        .btn {
+            background: var(--whiteColor);
+            color: var(--primaryColor);
+            padding: .8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 400;
+            transition: 0.3s ease;
+
+            &:hover {
+                background: var(--hoverColor);
+                color: var(--blackColor);
+            }
+        }
+    }
+
+    .formDiv {
+        flex-basis: 50%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        transform: translateY(-1rem);
+        height: 100%;
+
+        .headerDiv {
+            color: rgba(250, 249, 246, 1);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 10px;
+
+            h3 {
+                font-size: 25px;
+                color: var(--blackColor);
+                font-weight: 600;
+            }
+        }
+
+        .form {
+            gap: 0.7rem;
+            width: 100%; /* Make form take full width */
+
+            .inputDiv {
+                .icon {
+                    color: var(--greyText);
                 }
 
-                h3{
-                    font-size: 25px;
+                input {
+                    background: none;
+                    outline: none;
+                    border: none;
+                    width: 100%; /* Make input take full width */
+                }
+
+                label {
                     color: var(--blackColor);
-                    font-weight: 600;
+                    font-weight: 400;
+                    font-size: 14px;
+                    padding: .5rem 0;
+                    display: block;
+                }
+
+                .input {
+                    display: flex; /* Add this line */
+                    gap: .5rem;
+                    padding: 1rem;
+                    background: var(--inputColor);
+                    border-radius: 10px;
                 }
             }
 
-            .form{
-                gap: 1rem;
+            .btn {
+                padding: .8rem;
+                background: var(--primaryColor);
+                border-radius: 10px;
+                color: var(--whiteColor);
+                align-items: center;
+                margin: auto;
+                justify-content: center;
+                font-size: 16px;
+                width: 50%;
+                gap: .5rem;
+                transition: .3s ease;
 
-                .inputDiv{
-                    .icon{
-                        color: var(--greyText);
-                    }
 
-                    input{
-                        background: none;
-                        outline: none;
-                        border: none;
-                        width: 200px;
-                    }
-
-                    label{
-                        color: var(--blackColor);
-                        font-weight: 400;
-                        font-size: 14px;
-                        padding: .5rem 0;
-                        display: block;
-                    }
-
-                    .input{
-                        gap: .5rem;
-                        padding: 1rem;
-                        background: var(--inputColor);
-                        border-radius: 10px;
-
-                    }
+                .icon {
+                    font-size: 25px;
+                    transition: .3s ease;
                 }
 
-                .btn{
-                    padding: .8rem;
-                    background: var(--primaryColor);
-                    border-radius: 10px;
-                    color: var(--whiteColor);
-                    align-items: center;
-                    margin: auto;
-                    justify-content: center;
-                    font-size: 16px;
-                    width: 50%;
-                    gap: .5rem;
-                    transition: .3s ease;
+                &:hover {
+                    background: var(--hoverColor);
+                    color: var(--blackColor);
 
-                    .icon{
-                        font-size: 25px;
-                        transition: .3s ease;
-                    }
-
-                    &:hover{
-                        background: var(--hoverColor);
+                    .icon {
                         color: var(--blackColor);
-
-                        .icon{
-                            color: var(--blackColor);
-                            transform: translateX(5px);
-                        }
+                        transform: translateX(5px);
                     }
+                }
+            }
 
-                    .forgotPassword{
-                        font-size: 13px;
-                        color: var(--blackColor);
-                        opacity: .7;
-                        text-align: center;
+            .forgotPassword {
+                font-size: 13px;
+                color: var(--blackColor);
+                opacity: .7;
+                text-align: center;
 
-                        a{
-                            text-decoration: underline;
-                            cursor: pointer;
-                            opacity: 1;
-                        }
-                    }
-
+                a {
+                    text-decoration: underline;
+                    cursor: pointer;
+                    opacity: 1;
                 }
             }
         }

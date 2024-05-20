@@ -1,5 +1,3 @@
-// controllers/authController.js
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -25,7 +23,8 @@ const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
       weight,
-      dietaryGoal
+      dietaryGoal,
+      role: 'user' // Default role
     });
 
     // Save the new user to the database
@@ -56,7 +55,7 @@ const loginUser = async (req, res) => {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // Send the token and user data back to the client
     res.status(200).json({
@@ -66,7 +65,8 @@ const loginUser = async (req, res) => {
         username: user.username,
         email: user.email,
         weight: user.weight,
-        dietaryGoal: user.dietaryGoal
+        dietaryGoal: user.dietaryGoal,
+        role: user.role // Include role in response
       }
     });
   } catch (error) {
@@ -75,10 +75,21 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Delete a user
-const deleteUser = async (req, res) => {
+// Fetch all users (Admin only)
+const getUsers = async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const users = await User.find().select('-password');
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Delete a user by ID (Admin only)
+const deleteUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
 
     // Find and delete the user by ID
     await User.findByIdAndDelete(userId);
@@ -90,4 +101,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, deleteUser };
+// Delete own account
+const deleteOwnAccount = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Find and delete the user by ID
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({ message: 'Your account has been deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting own account:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { registerUser, loginUser, deleteUserById, getUsers, deleteOwnAccount };

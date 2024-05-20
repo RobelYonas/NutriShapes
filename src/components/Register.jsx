@@ -10,13 +10,22 @@ import { MdMarkEmailRead } from 'react-icons/md';
 import { FaWeightScale } from 'react-icons/fa6';
 
 const Register = () => {
-    const [formData, setFormData] = useState({ username: '', email: '', password: '', weight: '', dietaryGoal: '' });
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        weight: '',
+        dietaryGoal: ''
+    });
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -28,7 +37,7 @@ const Register = () => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             setMessage('Registration successful');
-            navigate('/home'); // Redirect to home page after registration
+            navigate('/home'); // Redirect to home page
         } catch (error) {
             console.error('Error registering user:', error.response?.data || error.message);
             setError(error.response?.data?.message || 'An error occurred. Please try again.');
@@ -73,10 +82,10 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="inputDiv">
-                            <label htmlFor='dietGoal'>Dietary Goal</label>
+                            <label htmlFor='dietaryGoal'>Dietary Goal</label>
                             <div className="input flex">
                                 <FaWeightScale className='icon' />
-                                <input type='text' id='dietGoal' name='dietaryGoal' placeholder='Dietary Goal (bulk, cut, maintain)' value={formData.dietaryGoal} onChange={handleChange} />
+                                <input type='text' id='dietaryGoal' name='dietaryGoal' placeholder='Dietary Goal (bulk, cut, maintain)' value={formData.dietaryGoal} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="inputDiv">

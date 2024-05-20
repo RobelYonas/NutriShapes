@@ -67,7 +67,6 @@ const Profile = ({ onLogout }) => {
               <InfoValue>{fatTarget.toFixed(2)} g</InfoValue>
             </InfoRow>
           </ProfileInfo>
-          <DeleteButton onClick={handleDeleteAccount}>Delete Account</DeleteButton>
         </CardInner>
       </Card>
     </ProfileContainer>
@@ -172,20 +171,6 @@ const InfoLabel = styled.div`
 
 const InfoValue = styled.div`
   color: #333;
-`;
-
-const DeleteButton = styled.button`
-  margin-top: 1.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #ff1a1a;
-  }
 `;
 
 export default Profile;
