@@ -75,6 +75,7 @@ export const CalorieProvider = ({ children }) => {
                 proteinTarget,
                 fatTarget,
                 calorieGoal,
+                calculateTargets // Include calculateTargets in the context value
             }}
         >
             {children}

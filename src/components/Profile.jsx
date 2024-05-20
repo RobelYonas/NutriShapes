@@ -6,15 +6,16 @@ import { useCalories } from '../components/CalorieContext';
 
 const Profile = ({ onLogout }) => {
   const [user, setUser] = useState(null);
-  const { proteinTarget, fatTarget } = useCalories();
+  const { proteinTarget, fatTarget, calculateTargets } = useCalories(); // Destructure calculateTargets from context
   const navigate = useNavigate();
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
       setUser(userData);
+      calculateTargets(userData.weight, userData.dietaryGoal); // Recalculate targets
     }
-  }, []);
+  }, [calculateTargets]);
 
   const handleDeleteAccount = async () => {
     const token = localStorage.getItem('token');
