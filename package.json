@@ -33,7 +33,7 @@
   },
   "scripts": {
     "client": "react-scripts start",
-    "server": "wait-on http://localhost:3000 && nodemon src/server/server.js",
+    "server": "wait-on http://localhost:3000 && node src/server/server.js",
     "start": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
