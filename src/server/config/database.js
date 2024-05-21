@@ -1,17 +1,19 @@
-require('dotenv').config({ path: '../../.env' }); // Adjust the path if necessary
 const mongoose = require('mongoose');
+require('dotenv').config({ path: '../../../.env' });
+
+const MONGO_URI = 'mongodb+srv://nestarobertnrn99se:Bobysawer23se!@cluster0.zt1epey.mongodb.net/Nutrishape'
 
 const connectDB = async () => {
   try {
-    console.log("Connecting to:", process.env.MONGO_URI); // Debug line
-    await mongoose.connect(process.env.MONGO_URI, {
+    console.log("Connecting to:", MONGO_URI);
+    await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("MongoDB connected successfully.");
   } catch (error) {
     console.error("MongoDB connection error:", error);
-    process.exit(1); // Exit process with failure if unable to connect to the database
+    process.exit(1);
   }
 };
 

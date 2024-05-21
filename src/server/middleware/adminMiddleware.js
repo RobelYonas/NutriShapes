@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+const JWT_SECRET = 'nutrishape'
+
 const adminMiddleware = async (req, res, next) => {
     const token = req.header('Authorization').replace('Bearer ', '');
 
@@ -9,7 +11,7 @@ const adminMiddleware = async (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, JWT_SECRET);
         req.user = decoded.user;
 
         const user = await User.findById(req.user.userId);
