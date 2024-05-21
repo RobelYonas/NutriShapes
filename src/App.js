@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, Link } from "react-router-dom";
+import styled from "styled-components";
+import { LuSalad } from "react-icons/lu";
+import { FiUser } from "react-icons/fi";
 import Pages from "./pages/Pages";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -7,15 +10,23 @@ import Home from "./pages/Home";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Search from "./components/Search";
-import styled from "styled-components";
-import { LuSalad } from "react-icons/lu";
-import { FiUser } from "react-icons/fi";
 import Logout from "./components/Logout";
 import AdminDashboard from "./components/AdminDashboard";
+import LandingPage from './pages/LandingPage';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
+      if (storedUser.role === 'admin') {
+        setIsAdmin(true);
+      }
+    }
+  }, []);
 
   const handleLogin = () => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -31,21 +42,6 @@ function App() {
     setUser(null);
     setIsAdmin(false);
   };
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      setUser(user);
-      if (user && user.role === 'admin') {
-        setIsAdmin(true);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
 
   return (
     <div className="App">
@@ -67,9 +63,9 @@ function App() {
           </>
         )}
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-          <Route path="/login" element={user ? <Navigate to="/home" /> : <Login onLogin={handleLogin} />} />
-          <Route path="/register" element={user ? <Navigate to="/home" /> : <Register onRegister={handleLogin} />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register onRegister={handleLogin} />} />
           <Route
             path="/home"
             element={

@@ -1,19 +1,19 @@
-import '../style/Landingpage.css'
+import '../style/LandingPage.css'
 import Aboutus from '../components/AboutUs/Aboutus';
 import Footer from '../components/Footer/Footer';
 import Hero from '../components/Hero/Hero';
 import Programs from '../components/Programs/Programs';
 import Reasons from '../components/Reasons/Reasons';
-function Landingpage() {
+function LandingPage() {
   return (
-    <div className="App">
-          <Hero/>
-          <Programs/>
-          <Reasons/>
-          <Aboutus/>
-          <Footer/>
-      </div>
+    <div className="main">
+      <Hero/>
+      <Programs/>
+      <Reasons/>
+      <Aboutus/>
+      <Footer/>
+    </div>
   );
 }
 
-export default Landingpage;
+export default LandingPage;
