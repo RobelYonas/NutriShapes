@@ -5,12 +5,9 @@ const authRoutes = require('./routes/AuthRoutes');
 const { authMiddleware } = require('./middleware/authMiddleware');
 const path = require('path');
 
-
-
 connectDB();
 
 const app = express();
-const __dirname = path.resolve();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors());
