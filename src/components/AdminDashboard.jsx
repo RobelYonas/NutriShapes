@@ -36,7 +36,7 @@ const AdminDashboard = () => {
         const fetchUsers = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:8080/api/auth/users`, {
+                const response = await axios.get(`https://nutrishape.onrender.com/api/auth/users`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUsers(response.data);
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
     const handleDelete = async (userId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:8080/api/auth/users/${userId}`, {
+            await axios.delete(`https://nutrishape.onrender.com/api/auth/users/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUsers(users.filter(user => user._id !== userId));
