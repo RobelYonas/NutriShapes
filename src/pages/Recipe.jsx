@@ -12,7 +12,7 @@ function Recipe() {
   const { addCalories, addProtein, addFat } = useCalories(); // Use the addCalories function from context
 
   const fetchDetails = async () => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+    const data = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=0ed7e0771c9b4d0e96eeee1d03316432`);
     const dataDetail = await data.json();
     setDetails(dataDetail);
 

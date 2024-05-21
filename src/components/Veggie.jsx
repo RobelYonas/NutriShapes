@@ -12,7 +12,7 @@ function Veggie() {
     }, [])
 
     const getVeggie = async () => {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=0ed7e0771c9b4d0e96eeee1d03316432&number=9&tags=vegetarian`)
         const data = await api.json();
         setVeggie(data.recipes)
     }

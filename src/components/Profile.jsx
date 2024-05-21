@@ -44,7 +44,7 @@ const Profile = ({ onLogout }) => {
   const handleDeleteAccount = async () => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/auth/delete`, {
+      await axios.delete(`http://localhost:8080/api/auth/delete`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.removeItem('token');

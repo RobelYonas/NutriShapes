@@ -12,7 +12,7 @@ function Meal() {
     }, [params.type])
 
     const getMeal = async (meal) => {
-        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&type=${meal}`)
+        const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=0ed7e0771c9b4d0e96eeee1d03316432&type=${meal}`)
         const recipe = await api.json();
         setMeals(recipe.results)
     }
