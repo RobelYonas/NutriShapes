@@ -13,6 +13,7 @@ import Search from "./components/Search";
 import Logout from "./components/Logout";
 import AdminDashboard from "./components/AdminDashboard";
 import LandingPage from './pages/LandingPage';
+import Category from "./components/Category"; // Make sure to import Category component
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -59,6 +60,7 @@ function App() {
               </div>
             </Nav>
             <Search />
+            <Category /> {/* Include Category component */}
             {isAdmin && <AdminButton to="/admin">Admin Dashboard</AdminButton>}
           </>
         )}

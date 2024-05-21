@@ -1,29 +1,56 @@
+import React from 'react';
 import { FaBreadSlice } from "react-icons/fa";
-import { MdLunchDining } from "react-icons/md";
-import { MdDinnerDining } from "react-icons/md";
+import { MdLunchDining, MdDinnerDining } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0% 20%;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+`;
 
 function Category() {
     return (
-        <List>
-            <SLink to={'/meal/breakfast'}>
-                <FaBreadSlice />
-                <h4>BreakFast</h4>
-            </SLink>
-            <SLink to={'/meal/maincourse'}>
-                <MdLunchDining />
-                <h4>Lunch</h4>
-            </SLink>
-            <SLink to={'/meal/fingerfood'}>
-                <MdDinnerDining />
-                <h4>Dinner</h4>
-            </SLink>
-            <SLink to={'/tracker'}>
-                <MdDinnerDining />
-                <h4>Tracker</h4>
-            </SLink>
-        </List>
+        <>
+            <GlobalStyle />
+            <List>
+                <SLink to={'/meal/breakfast'}>
+                    <FaBreadSlice />
+                    <h4>Breakfast</h4>
+                </SLink>
+                <SLink to={'/meal/maincourse'}>
+                    <MdLunchDining />
+                    <h4>Lunch</h4>
+                </SLink>
+                <SLink to={'/meal/fingerfood'}>
+                    <MdDinnerDining />
+                    <h4>Dinner</h4>
+                </SLink>
+                <SLink to={'/tracker'}>
+                    <MdDinnerDining />
+                    <h4>Tracker</h4>
+                </SLink>
+            </List>
+        </>
     )
 }
 

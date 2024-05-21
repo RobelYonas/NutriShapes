@@ -100,6 +100,10 @@ const DashboardContainer = styled.div`
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
 `;
 
 const ErrorMessage = styled.p`
@@ -116,6 +120,10 @@ const UserTable = styled.table`
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
+
+        @media (max-width: 768px) {
+            padding: 4px;
+        }
     }
 
     th {
@@ -142,5 +150,9 @@ const DeleteButton = styled.button`
 
     &:hover {
         background-color: #ff1a1a;
+    }
+
+    @media (max-width: 768px) {
+        padding: 3px 5px;
     }
 `;

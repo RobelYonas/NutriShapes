@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import React from "react";
 import { useCalories } from '../components/CalorieContext'; // Import the useCalories hook
 
@@ -42,57 +42,84 @@ function Recipe() {
   };
 
   return (
-    <DetailWrapper>
-      <Content>
-        <h2>{details.title}</h2>
-        <ImageWrapper>
-          <img src={details.image} alt={details.title} />
-        </ImageWrapper>
-        {nutrition.calories > 0 && (
-          <NutritionInfo>
-            <NutritionItem>
-              <strong>Calories:</strong> {nutrition.calories} kcal
-            </NutritionItem>
-            <NutritionItem>
-              <strong>Protein:</strong> {nutrition.protein} g
-            </NutritionItem>
-            <NutritionItem>
-              <strong>Fat:</strong> {nutrition.fat} g
-            </NutritionItem>
-          </NutritionInfo>
-        )}
-        <AddButton onClick={handleAddNutrition}>Add to Calorie Tracker</AddButton>
-      </Content>
-      <Info>
-        <Button
-          className={activeTab === 'instructions' ? 'active' : ''}
-          onClick={() => setActiveTab("instructions")}
-        >
-          Instructions
-        </Button>
-        <Button
-          className={activeTab === 'ingredients' ? 'active' : ''}
-          onClick={() => setActiveTab("ingredients")}
-        >
-          Ingredients
-        </Button>
-        {activeTab === "instructions" && (
-          <TextContent>
-            <div dangerouslySetInnerHTML={{ __html: details.summary }} />
-            <div dangerouslySetInnerHTML={{ __html: details.instructions }} />
-          </TextContent>
-        )}
-        {activeTab === "ingredients" && (
-          <ul>
-            {details.extendedIngredients.map((ingredient) => (
-              <li key={ingredient.id}>{ingredient.original}</li>
-            ))}
-          </ul>
-        )}
-      </Info>
-    </DetailWrapper>
+    <>
+      <GlobalStyle />
+      <DetailWrapper>
+        <Content>
+          <h2>{details.title}</h2>
+          <ImageWrapper>
+            <img src={details.image} alt={details.title} />
+          </ImageWrapper>
+          {nutrition.calories > 0 && (
+            <NutritionInfo>
+              <NutritionItem>
+                <strong>Calories:</strong> {nutrition.calories} kcal
+              </NutritionItem>
+              <NutritionItem>
+                <strong>Protein:</strong> {nutrition.protein} g
+              </NutritionItem>
+              <NutritionItem>
+                <strong>Fat:</strong> {nutrition.fat} g
+              </NutritionItem>
+            </NutritionInfo>
+          )}
+          <AddButton onClick={handleAddNutrition}>Add to Calorie Tracker</AddButton>
+        </Content>
+        <Info>
+          <Button
+            className={activeTab === 'instructions' ? 'active' : ''}
+            onClick={() => setActiveTab("instructions")}
+          >
+            Instructions
+          </Button>
+          <Button
+            className={activeTab === 'ingredients' ? 'active' : ''}
+            onClick={() => setActiveTab("ingredients")}
+          >
+            Ingredients
+          </Button>
+          {activeTab === "instructions" && (
+            <TextContent>
+              <div dangerouslySetInnerHTML={{ __html: details.summary }} />
+              <div dangerouslySetInnerHTML={{ __html: details.instructions }} />
+            </TextContent>
+          )}
+          {activeTab === "ingredients" && (
+            <ul>
+              {details.extendedIngredients.map((ingredient) => (
+                <li key={ingredient.id}>{ingredient.original}</li>
+              ))}
+            </ul>
+          )}
+        </Info>
+      </DetailWrapper>
+    </>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0% 20%;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+`;
 
 const DetailWrapper = styled.div`
   margin-top: 2rem;
@@ -125,7 +152,7 @@ const Content = styled.div`
   text-align: center;
   max-width: 600px;
   
-  h2{
+  h2 {
     font-size: 20px;
   }
 
