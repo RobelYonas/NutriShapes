@@ -1,21 +1,65 @@
 {
+  "name": "nutrify",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
+    "@splidejs/react-splide": "^0.7.12",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "emailjs": "^4.0.0",
     "express": "^4.19.2",
+    "framer-motion": "^11.1.9",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.3",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "number-counter": "^1.0.3",
+    "package.json": "^2.0.1",
+    "react": "^18.3.1",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "react-onclickoutside": "^6.12.2",
+    "react-router-dom": "^6.23.0",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.9.0",
+    "sass": "^1.77.2",
+    "styled-components": "^6.1.10",
+    "web-vitals": "^2.1.4"
   },
-  "name": "nutrishape",
-  "description": "To maintain clarity and consistency in our project's version control history, we use a structured commit message schema. This helps team members quickly understand the changes made and the context of each commit. Below is the schema and examples of how to craft effective commit messages.",
-  "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "client": "react-scripts start",
+    "server": "wait-on http://localhost:3000 && nodemon src/server/server.js",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  }
 }

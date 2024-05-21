@@ -1,50 +1,57 @@
-# Commit Message Schema
+# NutriShape
 
-To maintain clarity and consistency in our project's version control history, we use a structured commit message schema. This helps team members quickly understand the changes made and the context of each commit. Below is the schema and examples of how to craft effective commit messages.
+Nutrishape is a comprehensive nutrition web application designed to help users manage their nutrition, achieve dietary goals, and maintain a healthy lifestyle through meal planning and tracking. The app features user registration and login, meal selection, daily calorie tracking, and an admin section for user management.
 
-## Schema
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
+- [License](#license)
 
-Each commit message should consist of a **prefix** enclosed in brackets, followed by a **description** of the changes. The prefix helps to quickly identify the type of change, and the description provides a concise summary starting with a verb in the present tense. Optionally, more detailed explanations can follow if necessary.
+## Features
+- User registration and login with JWT authentication
+- Meal selection with calorie information and recipes
+- Daily calorie counter to track dietary goals
+- Admin section for user management (CRUD operations)
+- Responsive design using React
 
-### Prefixes
-
-- `[Init]`: Initial setup and configuration changes.
-- `[Feat]`: New features or significant enhancements.
-- `[Fix]`: Bug fixes or corrections.
-- `[UI]`: Updates related to the user interface.
-- `[Backend]`: Changes specifically in the backend code.
-- `[DB]`: Database related changes (schemas, migrations).
-- `[Refactor]`: Code refactoring without changing any behavior.
-- `[Docs]`: Documentation-only changes.
-- `[Test]`: Adding or modifying tests.
-- `[Chore]`: Maintenance tasks, scripts, and other non-functional changes.
-
-### Descriptions
-
-Follow the prefix with a brief summary of the change. Start with a verb such as "Add", "Fix", "Update", "Remove", "Refactor", etc.
-
-### Detailed Explanation (Optional)
-
-If necessary, a more detailed explanation can follow on a new line, providing additional context or justifying why the change was necessary.
-
-## Example Commit Messages
-
-Here are several examples illustrating how to use this schema:
-
-- **Initial Setup:**
-[Init] Set up project structure and initial configuration
-Establish the basic folder structure for frontend and backend. Include configuration files for Webpack and Babel in the frontend directory.
-
-- **Adding a New Feature:**
-[Feat] Implement user login functionality
-Add routes, controllers, and models to support user authentication. Include basic validation of credentials.
+## Technologies Used
+- Frontend: React, React Router, Axios, Framer Motion, Styled Components
+- Backend: Node.js, Express.js, Mongoose, Bcrypt, JSON Web Token (JWT)
+- Database: MongoDB Atlas
+- Other: dotenv, concurrently, module-alias
 
 
-- **Fixing a Bug:**
-[Fix] Correct the calorie counting error in the recipe module
-Resolve the issue where calorie totals were not accurately accumulating by adjusting the aggregation logic.
+## Installation
 
+### Prerequisites
+- Node.js (v14.x or later)
+- npm (v6.x or later)
 
-- **UI Enhancement:**
-[UI] Add a hero section to the landing page
-Design and implement a responsive hero section with dynamic content based on user goals.
+### Clone the Repository
+```bash
+git git@github.com:engNesta/NutriShape.git
+cd nutriShape
+```
+
+### Install Dependencies
+```bash
+npm install
+```
+
+## Running the Application
+```bash
+npm start
+```
+
+### Additional Notes
+
+- **Ensure all dependencies**: Make sure all the necessary dependencies are listed in your `package.json`.
+- **Environment Variables**: Double-check that the environment variables in the `.env` file are correct and match your setup.
+- **Run Commands**: Ensure the run commands in the `scripts` section of `package.json` work as expected.
+
+This README provides a clear overview of the project, instructions for installation, running the application, and contributing to the project. It should help users clone and set up the project on their local machines.
